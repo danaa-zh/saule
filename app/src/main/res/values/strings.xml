@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Saule</string>
+
+    <!-- Splash -->
+    <string name="title_splash"><font color="#D89B5B">Saule</font> is your Destination \nfor Everything</string>
+    <string name="subtitle_splash">Get personalized recommendations\nEnjoy fast, free shipping</string>
+    <string name="btn_get_started">Let\'s Get Started</string>
+    <string name="signin">Already have an account?<font color="#5C4B9B"> Sign In</font></string>
+
+    <!-- Auth -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="no_account">Don\'t have an account?<font color="#5C4B9B"> Sign Up</font></string>
+    <string name="have_account">Already have an account?<font color="#5C4B9B"> Sign In</font></string>
+    <string name="welcome_back">Welcome back 👋</string>
+    <string name="create_account">Create Account</string>
+    <string name="login_subtitle">Sign in to continue shopping</string>
+    <string name="signup_subtitle">Fill in the details to get started</string>
+
+    <!-- Home -->
+    <string name="welcome_greeting">Welcome Back</string>
+    <string name="search_hint">Search products…</string>
+    <string name="new_collection">New Collection</string>
+    <string name="view_all">See All</string>
+    <string name="popular_products">Popular Products</string>
+    <string name="btn_view">View</string>
+
+    <!-- Catalog -->
+    <string name="catalog">Catalog</string>
+    <string name="products_count">%d products</string>
+
+    <!-- Product Detail -->
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="color_label">Color: %s</string>
+    <string name="price_format">%s ₸</string>
+    <string name="rating_format">%.1f (%d reviews)</string>
+
+    <!-- Cart -->
+    <string name="cart">Cart</string>
+    <string name="cart_empty">Your cart is empty</string>
+    <string name="checkout">Checkout</string>
+    <string name="total">Total</string>
+
+    <!-- Favorites -->
+    <string name="favorites">Favorites</string>
+    <string name="favorites_empty">No favorites yet</string>
+
+    <!-- Profile -->
+    <string name="profile">Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="my_orders">My Orders</string>
+    <string name="settings">Settings</string>
+
+    <!-- Bottom Nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_catalog">Catalog</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Errors -->
+    <string name="error_empty_email">Please enter your email</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_short_password">Password must be at least 6 characters</string>
+    <string name="error_empty_name">Please enter your full name</string>
+    <string name="error_passwords_not_match">Passwords do not match</string>
+    <string name="error_generic">Something went wrong. Please try again</string>
+    <string name="error_network">No internet connection</string>
+
+    <!-- Categories (Kazakh) -->
+    <string name="category_electronics">Электроника</string>
+    <string name="category_clothing">Киім</string>
+    <string name="category_home">Үйге арналған</string>
+    <string name="category_beauty">Сұлулық</string>
+    <string name="category_footwear">Аяқ киім</string>
+    <string name="category_bags">Сөмкелер</string>
+    <string name="category_accessories">Аксессуарлар</string>
+    <string name="category_sports">Спорт тауарлары</string>
+    <string name="category_kids">Балаларға</string>
+</resources>
