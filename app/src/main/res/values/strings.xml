@@ -6,6 +6,7 @@
     <string name="subtitle_splash">Get personalized recommendations\nEnjoy fast, free shipping</string>
     <string name="btn_get_started">Let\'s Get Started</string>
     <string name="signin">Already have an account?<font color="#5C4B9B"> Sign In</font></string>
+    <string name="signin_plain">Already have an account? Sign In</string>
 
     <!-- Auth -->
     <string name="sign_in">Sign In</string>

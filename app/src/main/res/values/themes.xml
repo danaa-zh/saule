@@ -8,11 +8,11 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/textPrimary</item>
-        <item name="colorBackground">@color/backgroundPurple</item>
+<!--        <item name="colorBackground">@color/backgroundPurple</item>-->
         <item name="android:colorBackground">@color/backgroundPurple</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/backgroundPurple</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
 
     <style name="Theme.Saule" parent="Base.Theme.Saule" />
@@ -29,33 +29,32 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:windowBackground">@color/white</item>
     </style>
-
     <!-- Text Styles -->
-    <style name="TextStyle.Heading1" parent="Widget.Material3.TextView">
+    <style name="TextStyle.Heading1" parent="android:Widget.TextView">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="TextStyle.Heading2" parent="Widget.Material3.TextView">
+    <style name="TextStyle.Heading2" parent="android:Widget.TextView">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextStyle.Heading3" parent="Widget.Material3.TextView">
+    <style name="TextStyle.Heading3" parent="android:Widget.TextView">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextStyle.Body" parent="Widget.Material3.TextView">
+    <style name="TextStyle.Body" parent="android:Widget.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textSecondary</item>
     </style>
 
-    <style name="TextStyle.Caption" parent="Widget.Material3.TextView">
+    <style name="TextStyle.Caption" parent="android:Widget.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/textSecondary</item>
     </style>
