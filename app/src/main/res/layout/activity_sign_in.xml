@@ -123,7 +123,6 @@
                 android:visibility="gone"
                 android:indeterminateTint="@color/white" />
 
-            <!-- OR divider -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +152,6 @@
 
             </LinearLayout>
 
-            <!-- Google Sign-In Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/googleSignInBtn"
                 style="@style/Widget.Material3.Button.OutlinedButton"

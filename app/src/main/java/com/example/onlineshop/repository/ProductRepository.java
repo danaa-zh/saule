@@ -7,10 +7,6 @@ import com.google.firebase.firestore.Query;
 
 import java.util.List;
 
-/**
- * Handles all product and category data from Firestore.
- * Follows SRP: data access only. No UI logic.
- */
 public class ProductRepository {
 
     private static final String COLLECTION_PRODUCTS   = "products";
@@ -23,9 +19,6 @@ public class ProductRepository {
         this.db = FirebaseFirestore.getInstance();
     }
 
-    // ─── Products ──────────────────────────────────────────────────────────────
-
-    /** Fetch featured/popular products for the home screen. */
     public void getFeaturedProducts(FirebaseCallback<List<Product>> callback) {
         db.collection(COLLECTION_PRODUCTS)
                 .whereEqualTo("featured", true)
@@ -37,7 +30,6 @@ public class ProductRepository {
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
 
-    /** Fetch all products for a specific category. */
     public void getProductsByCategory(String categoryId,
                                       FirebaseCallback<List<Product>> callback) {
         db.collection(COLLECTION_PRODUCTS)
@@ -50,7 +42,6 @@ public class ProductRepository {
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
 
-    /** Fetch a single product by ID (for product detail screen). */
     public void getProductById(String productId,
                                FirebaseCallback<Product> callback) {
         db.collection(COLLECTION_PRODUCTS)
@@ -66,11 +57,8 @@ public class ProductRepository {
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
 
-    /** Search products by name (prefix match). */
     public void searchProducts(String query, FirebaseCallback<List<Product>> callback) {
         String queryLower = query.toLowerCase().trim();
-        // Firestore doesn't support full-text search natively.
-        // Range query on name field for prefix matching.
         db.collection(COLLECTION_PRODUCTS)
                 .orderBy("name")
                 .startAt(queryLower)
@@ -82,9 +70,6 @@ public class ProductRepository {
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
 
-    // ─── Categories ────────────────────────────────────────────────────────────
-
-    /** Fetch all categories ordered by sortOrder. */
     public void getCategories(FirebaseCallback<List<Category>> callback) {
         db.collection(COLLECTION_CATEGORIES)
                 .orderBy("sortOrder", Query.Direction.ASCENDING)

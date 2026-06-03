@@ -14,7 +14,6 @@ public class User {
     private String photoUrl;
     private long createdAt;
 
-    // Required empty constructor for Firestore deserialization
     public User() {}
 
     public User(String uid, String fullName, String email) {

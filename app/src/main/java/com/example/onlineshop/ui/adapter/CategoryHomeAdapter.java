@@ -13,10 +13,6 @@ import com.example.onlineshop.R;
 import com.example.onlineshop.databinding.ItemCategoryHomeBinding;
 import com.example.onlineshop.model.Category;
 
-/**
- * Horizontal category icon row adapter for the Home screen.
- * Uses ListAdapter + DiffUtil. Follows SRP: display only.
- */
 public class CategoryHomeAdapter extends ListAdapter<Category, CategoryHomeAdapter.CategoryViewHolder> {
 
     public interface OnCategoryClickListener {

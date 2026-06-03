@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Back Button -->
     <ImageButton
         android:id="@+id/backBtn"
         android:layout_width="44dp"
@@ -37,7 +36,6 @@
             android:paddingTop="24dp"
             android:paddingBottom="40dp">
 
-            <!-- Heading -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +52,6 @@
                 android:textColor="@color/textSecondary"
                 android:textSize="15sp" />
 
-            <!-- Full Name -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fullNameInputLayout"
                 style="@style/InputField"
@@ -75,7 +72,6 @@
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Email -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailInputLayout"
                 style="@style/InputField"
@@ -96,7 +92,6 @@
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Password -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordInputLayout"
                 style="@style/InputField"
@@ -118,7 +113,6 @@
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Confirm Password -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmPasswordInputLayout"
                 style="@style/InputField"
@@ -140,7 +134,6 @@
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Sign Up Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signUpBtn"
                 style="@style/Button.Primary"
@@ -152,7 +145,6 @@
                 android:textStyle="bold"
                 app:cornerRadius="28dp" />
 
-            <!-- Progress Bar -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="32dp"
@@ -162,7 +154,6 @@
                 android:visibility="gone"
                 android:indeterminateTint="@color/white" />
 
-            <!-- Sign In link -->
             <TextView
                 android:id="@+id/signInLink"
                 android:layout_width="match_parent"

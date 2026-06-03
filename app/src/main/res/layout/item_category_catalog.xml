@@ -14,7 +14,6 @@
     android:paddingHorizontal="8dp"
     android:paddingVertical="10dp">
 
-    <!-- Category icon -->
     <ImageView
         android:id="@+id/categoryIcon"
         android:layout_width="28dp"
@@ -23,7 +22,6 @@
         app:srcCompat="@drawable/ic_catalog"
         app:tint="@color/purple" />
 
-    <!-- Category name -->
     <TextView
         android:id="@+id/categoryName"
         android:layout_width="match_parent"
@@ -35,7 +33,6 @@
         android:textColor="@color/textSecondary"
         android:textSize="10sp" />
 
-    <!-- Active indicator bar (shown when selected) -->
     <View
         android:id="@+id/activeIndicator"
         android:layout_width="24dp"

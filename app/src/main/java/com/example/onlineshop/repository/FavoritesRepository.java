@@ -107,14 +107,14 @@ public class FavoritesRepository {
 
     private Map<String, Object> productToMap(Product product) {
         Map<String, Object> data = new HashMap<>();
-        data.put("productId",   product.getId());
-        data.put("name",        product.getName());
-        data.put("imageUrl",    product.getFirstImageUrl());
-        data.put("price",       product.getPrice());
-        data.put("categoryId",  product.getCategoryId());
-        data.put("rating",      product.getRating());
+        data.put("productId", product.getId());
+        data.put("name", product.getName());
+        data.put("imageUrl", product.getFirstImageUrl());
+        data.put("price", product.getPrice());
+        data.put("categoryId", product.getCategoryId());
+        data.put("rating", product.getRating());
         data.put("reviewCount", product.getReviewCount());
-        data.put("addedAt",     System.currentTimeMillis());
+        data.put("addedAt", System.currentTimeMillis());
         return data;
     }
 

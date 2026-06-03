@@ -9,7 +9,6 @@
     android:background="@drawable/bg_product_card"
     android:padding="12dp">
 
-    <!-- Product thumbnail -->
     <ImageView
         android:id="@+id/productImage"
         android:layout_width="80dp"
@@ -21,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Product name -->
     <TextView
         android:id="@+id/productName"
         android:layout_width="0dp"
@@ -37,7 +35,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Nike Air Max 90 White Shoes" />
 
-    <!-- Selected color -->
     <TextView
         android:id="@+id/colorTv"
         android:layout_width="0dp"
@@ -51,7 +48,6 @@
         app:layout_constraintTop_toBottomOf="@id/productName"
         tools:text="Color: White" />
 
-    <!-- Price -->
     <TextView
         android:id="@+id/priceTv"
         android:layout_width="wrap_content"
@@ -65,7 +61,6 @@
         app:layout_constraintTop_toBottomOf="@id/colorTv"
         tools:text="15 000 ₸" />
 
-    <!-- Delete button -->
     <ImageButton
         android:id="@+id/deleteBtn"
         android:layout_width="32dp"
@@ -78,7 +73,6 @@
         app:srcCompat="@drawable/ic_minus"
         app:tint="@color/error" />
 
-    <!-- Quantity controls -->
     <LinearLayout
         android:id="@+id/quantityRow"
         android:layout_width="wrap_content"

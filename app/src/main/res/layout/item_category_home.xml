@@ -11,7 +11,6 @@
     android:focusable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless">
 
-    <!-- Icon Container -->
     <FrameLayout
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -27,7 +26,6 @@
             app:tint="@color/purple" />
     </FrameLayout>
 
-    <!-- Category Name -->
     <TextView
         android:id="@+id/categoryName"
         android:layout_width="match_parent"

@@ -114,13 +114,6 @@
                 android:text="Language"
                 android:textColor="@color/textPrimary"
                 android:textSize="15sp" />
-
-<!--            <ImageView-->
-<!--                android:layout_width="16dp"-->
-<!--                android:layout_height="16dp"-->
-<!--                app:srcCompat="@drawable/ic_back"-->
-<!--                app:tint="@color/textHint" />-->
-
         </LinearLayout>
 
         <View
@@ -154,13 +147,6 @@
                 android:text="Privacy Policy"
                 android:textColor="@color/textPrimary"
                 android:textSize="15sp" />
-
-<!--            <ImageView-->
-<!--                android:layout_width="16dp"-->
-<!--                android:layout_height="16dp"-->
-<!--                app:srcCompat="@drawable/ic_back"-->
-<!--                app:tint="@color/textHint" />-->
-
         </LinearLayout>
 
     </LinearLayout>

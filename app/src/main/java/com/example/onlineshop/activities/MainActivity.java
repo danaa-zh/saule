@@ -13,21 +13,14 @@ import com.example.onlineshop.ui.fragments.FavoritesFragment;
 import com.example.onlineshop.ui.fragments.HomeFragment;
 import com.example.onlineshop.ui.fragments.ProfileFragment;
 
-/**
- * Host activity for the 4 bottom-navigation tabs:
- *   Home | Catalog | Favorites | Profile
- *
- * Cart is a standalone Activity (CartActivity) — NOT a tab.
- * Uses hide/show fragment strategy to preserve state across tab switches.
- */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private HomeFragment      homeFragment;
-    private CatalogFragment   catalogFragment;
+    private HomeFragment homeFragment;
+    private CatalogFragment catalogFragment;
     private FavoritesFragment favoritesFragment;
-    private ProfileFragment   profileFragment;
+    private ProfileFragment profileFragment;
 
     private Fragment activeFragment;
 
@@ -40,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             initFragments();
         } else {
-            // Restore fragment references after process death
             homeFragment      = (HomeFragment)      getSupportFragmentManager().findFragmentByTag("home");
             catalogFragment   = (CatalogFragment)   getSupportFragmentManager().findFragmentByTag("catalog");
             favoritesFragment = (FavoritesFragment) getSupportFragmentManager().findFragmentByTag("favorites");
@@ -52,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragments() {
-        homeFragment      = new HomeFragment();
-        catalogFragment   = new CatalogFragment();
+        homeFragment = new HomeFragment();
+        catalogFragment = new CatalogFragment();
         favoritesFragment = new FavoritesFragment();
-        profileFragment   = new ProfileFragment();
+        profileFragment = new ProfileFragment();
 
         activeFragment = homeFragment;
 
@@ -71,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
-            if (id == R.id.nav_home)      return showFragment(homeFragment);
-            if (id == R.id.nav_catalog)   return showFragment(catalogFragment);
+            if (id == R.id.nav_home) return showFragment(homeFragment);
+            if (id == R.id.nav_catalog) return showFragment(catalogFragment);
             if (id == R.id.nav_favorites) return showFragment(favoritesFragment);
-            if (id == R.id.nav_profile)   return showFragment(profileFragment);
+            if (id == R.id.nav_profile) return showFragment(profileFragment);
 
             return false;
         });
@@ -93,12 +85,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /** Called by HomeFragment's cart icon to open CartActivity. */
     public void openCart() {
         startActivity(new Intent(this, CartActivity.class));
     }
 
-    /** Switches the bottom nav to the Catalog tab (called from HomeFragment category click). */
     public void navigateToCatalog(String categoryId, String categoryName) {
         if (catalogFragment != null) {
             catalogFragment.filterByCategory(categoryId, categoryName);
@@ -107,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         showFragment(catalogFragment);
     }
 
-    /** Updates the favorites badge count in the bottom nav. */
     public void updateFavoritesBadge(int count) {
         if (count > 0) {
             binding.bottomNavigation.getOrCreateBadge(R.id.nav_favorites).setNumber(count);

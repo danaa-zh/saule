@@ -32,16 +32,16 @@ import java.util.Set;
 
 public class CatalogFragment extends Fragment {
 
-    private FragmentCatalogBinding  binding;
-    private ProductRepository       productRepository;
-    private FavoritesRepository     favoritesRepository;
-    private CategoryCatalogAdapter  categoryAdapter;
-    private ProductAdapter          productAdapter;
+    private FragmentCatalogBinding binding;
+    private ProductRepository productRepository;
+    private FavoritesRepository favoritesRepository;
+    private CategoryCatalogAdapter categoryAdapter;
+    private ProductAdapter productAdapter;
 
-    private List<Category> allCategories    = new ArrayList<>();
-    private String         activeCategoryId = null;
-    private String         pendingCategoryId   = null;
-    private String         pendingCategoryName = null;
+    private List<Category> allCategories = new ArrayList<>();
+    private String activeCategoryId = null;
+    private String pendingCategoryId   = null;
+    private String pendingCategoryName = null;
 
     @Nullable
     @Override
@@ -56,7 +56,7 @@ public class CatalogFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        productRepository   = new ProductRepository();
+        productRepository = new ProductRepository();
         favoritesRepository = new FavoritesRepository();
 
         setupAdapters();
@@ -83,7 +83,7 @@ public class CatalogFragment extends Fragment {
 
     public void filterByCategory(String categoryId, String categoryName) {
         if (binding == null) {
-            pendingCategoryId   = categoryId;
+            pendingCategoryId = categoryId;
             pendingCategoryName = categoryName;
             return;
         }

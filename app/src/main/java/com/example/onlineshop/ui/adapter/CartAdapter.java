@@ -13,11 +13,6 @@ import com.example.onlineshop.R;
 import com.example.onlineshop.databinding.ItemCartBinding;
 import com.example.onlineshop.model.CartItem;
 
-/**
- * RecyclerView adapter for the Cart screen.
- * Uses DiffUtil for efficient list updates.
- * Follows SRP: display and click delegation only.
- */
 public class CartAdapter extends ListAdapter<CartItem, CartAdapter.ViewHolder> {
 
     public interface CartItemListener {
@@ -45,8 +40,6 @@ public class CartAdapter extends ListAdapter<CartItem, CartAdapter.ViewHolder> {
         holder.bind(getItem(position), listener);
     }
 
-    // ─── ViewHolder ────────────────────────────────────────────────────────────
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemCartBinding binding;
@@ -61,22 +54,18 @@ public class CartAdapter extends ListAdapter<CartItem, CartAdapter.ViewHolder> {
             binding.priceTv.setText(item.getFormattedTotalPrice());
             binding.quantityTv.setText(String.valueOf(item.getQuantity()));
 
-            // Color chip — only show if non-empty
             if (item.getSelectedColor() != null && !item.getSelectedColor().isEmpty()) {
                 binding.colorTv.setText("Color: " + item.getSelectedColor());
             } else {
                 binding.colorTv.setText("");
             }
 
-            // Load image via Glide
             Glide.with(binding.getRoot().getContext())
                     .load(item.getProductImageUrl())
                     .placeholder(R.drawable.ic_catalog)
                     .error(R.drawable.ic_catalog)
                     .centerCrop()
                     .into(binding.productImage);
-
-            // ── Quantity controls ──────────────────────────────────────────────
 
             binding.increaseBtn.setOnClickListener(v -> {
                 int newQty = item.getQuantity() + 1;
@@ -90,7 +79,6 @@ public class CartAdapter extends ListAdapter<CartItem, CartAdapter.ViewHolder> {
                     binding.quantityTv.setText(String.valueOf(newQty));
                     listener.onQuantityChanged(item, newQty);
                 } else {
-                    // Qty would reach 0 → treat as delete
                     listener.onDeleteItem(item);
                 }
             });
@@ -98,8 +86,6 @@ public class CartAdapter extends ListAdapter<CartItem, CartAdapter.ViewHolder> {
             binding.deleteBtn.setOnClickListener(v -> listener.onDeleteItem(item));
         }
     }
-
-    // ─── DiffUtil ──────────────────────────────────────────────────────────────
 
     private static final DiffUtil.ItemCallback<CartItem> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<CartItem>() {

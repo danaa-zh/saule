@@ -15,23 +15,11 @@ import com.example.onlineshop.ui.adapter.CartAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Standalone Cart screen — NOT a bottom navigation tab.
- * Launched from HomeFragment / CatalogFragment cart icon.
- *
- * Responsibilities:
- *  - Display cart items via CartAdapter
- *  - Handle quantity updates and item deletion via CartRepository
- *  - Show running total
- *  - Checkout button (stub — extend with payment flow as needed)
- *
- * Follows SRP: view/interaction only. Data access via CartRepository.
- */
 public class CartActivity extends AppCompatActivity {
 
     private ActivityCartBinding binding;
-    private CartRepository      cartRepository;
-    private CartAdapter         cartAdapter;
+    private CartRepository cartRepository;
+    private CartAdapter cartAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +33,6 @@ public class CartActivity extends AppCompatActivity {
         setupClickListeners();
         loadCart();
     }
-
-    // ─── Setup ─────────────────────────────────────────────────────────────────
 
     private void setupAdapter() {
         cartAdapter = new CartAdapter(new CartAdapter.CartItemListener() {
@@ -68,12 +54,9 @@ public class CartActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(v -> finish());
 
         binding.checkoutBtn.setOnClickListener(v -> {
-            // TODO: Integrate payment / order creation flow.
             Toast.makeText(this, "Proceeding to checkout…", Toast.LENGTH_SHORT).show();
         });
     }
-
-    // ─── Data ──────────────────────────────────────────────────────────────────
 
     private void loadCart() {
         setLoading(true);
@@ -123,7 +106,6 @@ public class CartActivity extends AppCompatActivity {
         cartRepository.removeFromCart(item.getId(), new FirebaseCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                // Reload for a consistent snapshot
                 loadCart();
             }
 
@@ -133,8 +115,6 @@ public class CartActivity extends AppCompatActivity {
             }
         });
     }
-
-    // ─── UI Helpers ────────────────────────────────────────────────────────────
 
     private void updateTotal(List<CartItem> items) {
         double total = 0;

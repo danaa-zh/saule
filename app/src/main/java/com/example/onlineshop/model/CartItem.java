@@ -16,7 +16,6 @@ public class CartItem {
     private String selectedColor;
     private int quantity;
 
-    // Required for Firestore
     public CartItem() {}
 
     public CartItem(Product product, String selectedColor, int quantity) {

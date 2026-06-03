@@ -14,11 +14,6 @@ import com.example.onlineshop.R;
 import com.example.onlineshop.databinding.ItemCategoryCatalogBinding;
 import com.example.onlineshop.model.Category;
 
-/**
- * Vertical sidebar adapter for the Catalog screen.
- * Highlights the currently selected category.
- * Follows SRP: list display only.
- */
 public class CategoryCatalogAdapter
         extends ListAdapter<Category, CategoryCatalogAdapter.ViewHolder> {
 
@@ -27,7 +22,7 @@ public class CategoryCatalogAdapter
     }
 
     private final OnCategoryClickListener listener;
-    private int selectedPosition = 0; // "All" is selected by default
+    private int selectedPosition = 0;
 
     public CategoryCatalogAdapter(OnCategoryClickListener listener) {
         super(DIFF_CALLBACK);
@@ -57,7 +52,6 @@ public class CategoryCatalogAdapter
         });
     }
 
-    /** Programmatically selects the category at the given position (e.g. from HomeFragment). */
     public void setSelectedPosition(int position) {
         int prev = selectedPosition;
         selectedPosition = position;
@@ -65,15 +59,12 @@ public class CategoryCatalogAdapter
         notifyItemChanged(selectedPosition);
     }
 
-    /** Returns the index of the category with the given id, or -1 if not found. */
     public int findPositionById(String categoryId) {
         for (int i = 0; i < getCurrentList().size(); i++) {
             if (getItem(i).getId().equals(categoryId)) return i;
         }
         return -1;
     }
-
-    // ─── ViewHolder ────────────────────────────────────────────────────────────
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -87,11 +78,9 @@ public class CategoryCatalogAdapter
         void bind(Category category, boolean isSelected) {
             binding.categoryName.setText(category.getName());
 
-            // Active indicator bar
             binding.activeIndicator.setVisibility(
                     isSelected ? View.VISIBLE : View.INVISIBLE);
 
-            // Icon: load from Cloudinary URL if available, else use default drawable
             if (category.getImageUrl() != null && !category.getImageUrl().isEmpty()) {
                 Glide.with(binding.getRoot().getContext())
                         .load(category.getImageUrl())
@@ -102,14 +91,11 @@ public class CategoryCatalogAdapter
                 binding.categoryIcon.setImageResource(R.drawable.ic_catalog);
             }
 
-            // Highlight icon tint when selected
             binding.categoryName.setTextColor(
                     binding.getRoot().getContext().getColor(
                             isSelected ? R.color.purple : R.color.textSecondary));
         }
     }
-
-    // ─── DiffUtil ──────────────────────────────────────────────────────────────
 
     private static final DiffUtil.ItemCallback<Category> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<Category>() {

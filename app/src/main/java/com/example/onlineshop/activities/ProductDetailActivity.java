@@ -33,10 +33,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     private FavoritesRepository favoritesRepository;
 
     private Product currentProduct;
-    private String  selectedColor     = "";
-    private int     quantity          = 1;
-    private boolean isFavorite        = false;
-    private View    selectedSwatchView = null;
+    private String selectedColor = "";
+    private int quantity = 1;
+    private boolean isFavorite = false;
+    private View selectedSwatchView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         binding = ActivityProductDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        productRepository    = new ProductRepository();
-        cartRepository       = new CartRepository();
-        favoritesRepository  = new FavoritesRepository();
+        productRepository = new ProductRepository();
+        cartRepository = new CartRepository();
+        favoritesRepository = new FavoritesRepository();
 
         String productId = getIntent().getStringExtra(EXTRA_PRODUCT_ID);
         if (productId == null) {
@@ -169,10 +169,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     private void buildColorSwatches(List<String> colors) {
         binding.colorsRow.removeAllViews();
 
-        int swatchSizePx   = dpToPx(36);
+        int swatchSizePx = dpToPx(36);
         int swatchMarginPx = dpToPx(8);
-        int borderWidthPx  = dpToPx(2);
-        int borderGapPx    = dpToPx(3);
+        int borderWidthPx = dpToPx(2);
+        int borderGapPx = dpToPx(3);
 
         for (int i = 0; i < colors.size(); i++) {
             final String colorName = colors.get(i);

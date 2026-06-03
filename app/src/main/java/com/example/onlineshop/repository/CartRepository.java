@@ -6,10 +6,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-/**
- * Handles cart operations in Firestore under users/{uid}/cart subcollection.
- * Follows SRP: cart data access only.
- */
 public class CartRepository {
 
     private static final String COLLECTION_USERS = "users";
@@ -23,8 +19,6 @@ public class CartRepository {
         this.auth = FirebaseAuth.getInstance();
     }
 
-    // ─── Read ──────────────────────────────────────────────────────────────────
-
     public void getCartItems(FirebaseCallback<List<CartItem>> callback) {
         String uid = getCurrentUid(callback);
         if (uid == null) return;
@@ -37,8 +31,6 @@ public class CartRepository {
                         callback.onSuccess(snapshots.toObjects(CartItem.class)))
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
-
-    // ─── Write ─────────────────────────────────────────────────────────────────
 
     public void addToCart(CartItem item, FirebaseCallback<Void> callback) {
         String uid = getCurrentUid(callback);
@@ -78,8 +70,6 @@ public class CartRepository {
                 .addOnSuccessListener(unused -> callback.onSuccess(null))
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
-
-    // ─── Private Helpers ───────────────────────────────────────────────────────
 
     private <T> String getCurrentUid(FirebaseCallback<T> callback) {
         String uid = auth.getCurrentUser() != null

@@ -11,7 +11,6 @@
     android:foreground="?attr/selectableItemBackground"
     android:padding="12dp">
 
-    <!-- Product Image -->
     <ImageView
         android:id="@+id/productImage"
         android:layout_width="0dp"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Favorite Button (top-right) -->
     <ImageButton
         android:id="@+id/favoriteBtn"
         android:layout_width="32dp"
@@ -36,7 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Product Name -->
     <TextView
         android:id="@+id/productName"
         android:layout_width="0dp"
@@ -51,7 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/productImage" />
 
-    <!-- Rating Row -->
     <LinearLayout
         android:id="@+id/ratingRow"
         android:layout_width="wrap_content"
@@ -78,7 +74,6 @@
             android:textSize="11sp" />
     </LinearLayout>
 
-    <!-- Price -->
     <TextView
         android:id="@+id/priceTv"
         android:layout_width="0dp"

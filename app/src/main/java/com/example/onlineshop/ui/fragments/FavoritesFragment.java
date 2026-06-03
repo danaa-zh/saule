@@ -22,16 +22,11 @@ import com.example.onlineshop.ui.adapter.ProductAdapter;
 
 import java.util.List;
 
-/**
- * Favorites screen fragment.
- * Displays all products the user has saved using FavoritesRepository.
- * Follows SRP: view logic only. Data access via FavoritesRepository.
- */
 public class FavoritesFragment extends Fragment {
 
     private FragmentFavoritesBinding binding;
-    private FavoritesRepository      favoritesRepository;
-    private ProductAdapter           productAdapter;
+    private FavoritesRepository favoritesRepository;
+    private ProductAdapter productAdapter;
 
     @Nullable
     @Override
@@ -55,12 +50,8 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // Refresh list whenever user returns to this tab
-        // (e.g. after removing a favorite from ProductDetail)
         loadFavorites();
     }
-
-    // ─── Setup ─────────────────────────────────────────────────────────────────
 
     private void setupRecyclerView() {
         productAdapter = new ProductAdapter(new ProductAdapter.OnProductClickListener() {
@@ -73,7 +64,6 @@ public class FavoritesFragment extends Fragment {
 
             @Override
             public void onFavoriteClick(Product product) {
-                // On favorites screen — tapping the heart removes from favorites
                 removeFromFavorites(product);
             }
         });
@@ -81,8 +71,6 @@ public class FavoritesFragment extends Fragment {
         binding.favoritesRv.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         binding.favoritesRv.setAdapter(productAdapter);
     }
-
-    // ─── Data ──────────────────────────────────────────────────────────────────
 
     private void loadFavorites() {
         setLoading(true);
@@ -122,7 +110,7 @@ public class FavoritesFragment extends Fragment {
                 Toast.makeText(requireContext(),
                         product.getName() + " removed from favorites",
                         Toast.LENGTH_SHORT).show();
-                loadFavorites(); // refresh list
+                loadFavorites();
             }
 
             @Override
@@ -132,8 +120,6 @@ public class FavoritesFragment extends Fragment {
             }
         });
     }
-
-    // ─── UI State ──────────────────────────────────────────────────────────────
 
     private void setLoading(boolean loading) {
         if (binding == null) return;

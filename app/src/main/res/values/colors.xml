@@ -1,39 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
-
-    <!-- Brand Primary -->
     <color name="primary">#4C5372</color>
     <color name="primaryDark">#3A3F5C</color>
     <color name="primaryLight">#6B728F</color>
-
-    <!-- Purple Theme (from design) -->
     <color name="purple">#5C4B9B</color>
     <color name="purpleDark">#3D3270</color>
     <color name="purpleLight">#9B8EC4</color>
     <color name="purplePale">#C9BFEA</color>
     <color name="purpleAccent">#E8E0F5</color>
     <color name="purpleBg">#F9F5FF</color>
-
-    <!-- Accent / Orange (splash button) -->
     <color name="orange">#D89B5B</color>
     <color name="orangeDark">#C0813A</color>
-
-    <!-- Backgrounds -->
     <color name="background">#FFFDF6</color>
     <color name="backgroundPurple">#F9F5FF</color>
     <color name="cardBackground">#FFFFFF</color>
-
-    <!-- Text -->
     <color name="textPrimary">#1A1A2E</color>
     <color name="textSecondary">#6B6B8A</color>
     <color name="textHint">#ABABC4</color>
     <color name="textOnPrimary">#FFFFFF</color>
-
-    <!-- UI Elements -->
     <color name="accent">#E2D4E0</color>
     <color name="secondary">#7C7E9D</color>
     <color name="secondaryLight">#9A9AB1</color>
@@ -42,17 +29,11 @@
     <color name="darkGrey">#616161</color>
     <color name="divider">#EEECF6</color>
     <color name="inputBorder">#DDD8F0</color>
-
-    <!-- Status -->
     <color name="success">#6BBF59</color>
     <color name="warning">#F2B84B</color>
     <color name="error">#E53935</color>
-
-    <!-- Bottom Nav -->
     <color name="bottomNavActive">#5C4B9B</color>
     <color name="bottomNavInactive">#ABABC4</color>
-
-    <!-- Badge -->
     <color name="badgeBackground">#5C4B9B</color>
     <color name="badgeText">#FFFFFF</color>
 </resources>

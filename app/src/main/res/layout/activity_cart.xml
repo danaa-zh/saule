@@ -8,7 +8,6 @@
     android:background="@color/backgroundPurple"
     tools:context=".activities.CartActivity">
 
-    <!-- ── Top Bar ── -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -48,7 +47,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- ── Loading ── -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -59,7 +57,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBar" />
 
-    <!-- ── Empty State ── -->
     <LinearLayout
         android:id="@+id/emptyState"
         android:layout_width="0dp"
@@ -92,7 +89,6 @@
 
     </LinearLayout>
 
-    <!-- ── Cart Items List ── -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRv"
         android:layout_width="0dp"
@@ -109,7 +105,6 @@
         tools:listitem="@layout/item_cart"
         tools:visibility="visible" />
 
-    <!-- ── Order Summary Card ── -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/orderSummaryCard"
         android:layout_width="0dp"
@@ -124,7 +119,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Divider -->
         <View
             android:id="@+id/divider"
             android:layout_width="0dp"
@@ -134,7 +128,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Total label -->
         <TextView
             android:id="@+id/totalLabel"
             android:layout_width="wrap_content"
@@ -146,7 +139,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
-        <!-- Total price -->
         <TextView
             android:id="@+id/totalPriceTv"
             android:layout_width="wrap_content"
@@ -158,7 +150,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="45 000 ₸" />
 
-        <!-- Checkout Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/checkoutBtn"
             style="@style/Button.Primary"

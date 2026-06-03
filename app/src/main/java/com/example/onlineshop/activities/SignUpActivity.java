@@ -13,10 +13,6 @@ import com.example.onlineshop.repository.AuthRepository;
 import com.example.onlineshop.repository.FirebaseCallback;
 import com.example.onlineshop.model.User;
 
-/**
- * Sign Up / Registration screen.
- * Validates inputs → delegates to AuthRepository → navigates to Main.
- */
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
@@ -45,10 +41,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void attemptSignUp() {
-        String fullName         = binding.fullNameInput.getText().toString().trim();
-        String email            = binding.emailInput.getText().toString().trim();
-        String password         = binding.passwordInput.getText().toString().trim();
-        String confirmPassword  = binding.confirmPasswordInput.getText().toString().trim();
+        String fullName = binding.fullNameInput.getText().toString().trim();
+        String email = binding.emailInput.getText().toString().trim();
+        String password = binding.passwordInput.getText().toString().trim();
+        String confirmPassword = binding.confirmPasswordInput.getText().toString().trim();
 
         if (!validateInputs(fullName, email, password, confirmPassword)) return;
 
@@ -73,7 +69,6 @@ public class SignUpActivity extends AppCompatActivity {
                                    String password, String confirmPassword) {
         boolean isValid = true;
 
-        // Clear all errors first
         binding.fullNameInputLayout.setError(null);
         binding.emailInputLayout.setError(null);
         binding.passwordInputLayout.setError(null);

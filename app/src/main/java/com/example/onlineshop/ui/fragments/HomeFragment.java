@@ -28,18 +28,13 @@ import com.example.onlineshop.ui.adapter.ProductAdapter;
 
 import java.util.List;
 
-/**
- * Home screen fragment.
- * Loads user profile, categories, and featured products.
- * Follows SRP: view logic only. Data access via repositories.
- */
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private AuthRepository      authRepository;
-    private ProductRepository   productRepository;
+    private AuthRepository authRepository;
+    private ProductRepository productRepository;
     private CategoryHomeAdapter categoryAdapter;
-    private ProductAdapter      productAdapter;
+    private ProductAdapter productAdapter;
 
     @Nullable
     @Override
@@ -54,7 +49,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        authRepository    = new AuthRepository();
+        authRepository = new AuthRepository();
         productRepository = new ProductRepository();
 
         setupRecyclerViews();
@@ -65,14 +60,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupRecyclerViews() {
-        // Categories — horizontal linear
         categoryAdapter = new CategoryHomeAdapter(this::onCategoryClick);
         binding.categoriesRv.setLayoutManager(
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.HORIZONTAL, false));
         binding.categoriesRv.setAdapter(categoryAdapter);
 
-        // Products — 2-column grid
         productAdapter = new ProductAdapter(new ProductAdapter.OnProductClickListener() {
             @Override
             public void onProductClick(Product product) {
@@ -81,8 +74,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFavoriteClick(Product product) {
-                // Delegated to FavoritesFragment via MainActivity is not needed;
-                // FavoritesRepository handles toggle from anywhere.
                 Toast.makeText(requireContext(),
                         product.getName() + " saved to favorites", Toast.LENGTH_SHORT).show();
             }
@@ -94,7 +85,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupClickListeners() {
-        // Cart icon → open CartActivity (standalone screen, not a nav tab)
         binding.cartBtn.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), CartActivity.class));
         });
@@ -111,7 +101,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(String errorMessage) {
-                // Non-critical: leave default text
             }
         });
     }
@@ -127,7 +116,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(String errorMessage) {
-                // Non-critical: categories section stays empty
             }
         });
     }
@@ -158,7 +146,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void onCategoryClick(Category category) {
-        // Navigate to Catalog tab filtered by this category
         if (getActivity() instanceof MainActivity) {
             ((MainActivity) getActivity())
                     .navigateToCatalog(category.getId(), category.getName());

@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <style name="Base.Theme.Saule" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purple</item>
         <item name="colorPrimaryVariant">@color/purpleDark</item>
@@ -8,58 +7,45 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/textPrimary</item>
-<!--        <item name="colorBackground">@color/backgroundPurple</item>-->
         <item name="android:colorBackground">@color/backgroundPurple</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/backgroundPurple</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
-
     <style name="Theme.Saule" parent="Base.Theme.Saule" />
-
-    <!-- Splash has white background -->
     <style name="Theme.Saule.Splash" parent="Base.Theme.Saule">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
     </style>
-
-    <!-- Auth screens -->
     <style name="Theme.Saule.Auth" parent="Base.Theme.Saule">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:windowBackground">@color/white</item>
     </style>
-    <!-- Text Styles -->
     <style name="TextStyle.Heading1" parent="android:Widget.TextView">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
-
     <style name="TextStyle.Heading2" parent="android:Widget.TextView">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
-
     <style name="TextStyle.Heading3" parent="android:Widget.TextView">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
-
     <style name="TextStyle.Body" parent="android:Widget.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textSecondary</item>
     </style>
-
     <style name="TextStyle.Caption" parent="android:Widget.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/textSecondary</item>
     </style>
-
-    <!-- Button Styles -->
     <style name="Button.Primary" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/purple</item>
         <item name="android:textColor">@color/white</item>
@@ -70,7 +56,6 @@
         <item name="android:paddingBottom">14dp</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
-
     <style name="Button.Orange" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/orange</item>
         <item name="android:textColor">@color/white</item>
@@ -81,8 +66,6 @@
         <item name="android:paddingBottom">14dp</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
-
-    <!-- Input Styles -->
     <style name="InputField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/inputBorder</item>
         <item name="boxBackgroundColor">@color/white</item>
@@ -92,8 +75,6 @@
         <item name="boxCornerRadiusBottomEnd">14dp</item>
         <item name="hintTextColor">@color/textHint</item>
     </style>
-
-    <!-- Card Style -->
     <style name="ProductCard" parent="Widget.Material3.CardView.Elevated">
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">0dp</item>
@@ -101,11 +82,9 @@
         <item name="strokeColor">@color/divider</item>
         <item name="strokeWidth">1dp</item>
     </style>
-
     <style name="Theme.OnlineShop.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_pic</item>
         <item name="postSplashScreenTheme">@style/Theme.Saule</item>
     </style>
-
 </resources>
