@@ -2,30 +2,45 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundPurple"
-    tools:context=".ui.fragments.FavoritesFragment">
+    android:background="@color/backgroundPurple">
 
-    <!-- Header -->
-    <TextView
-        android:id="@+id/titleTv"
+    <LinearLayout
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingHorizontal="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
         android:paddingTop="52dp"
-        android:paddingBottom="20dp"
-        android:text="@string/favorites"
-        android:textColor="@color/textPrimary"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Loading spinner -->
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_chip_default"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_back"
+            app:tint="@color/textPrimary" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/my_orders"
+            android:textColor="@color/textPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -34,58 +49,46 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTv" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Empty state -->
     <LinearLayout
         android:id="@+id/emptyState"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="32dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTv">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:alpha="0.4"
-            android:contentDescription="Empty favorites"
-            app:srcCompat="@drawable/ic_favorite"
-            app:tint="@color/purple" />
+            app:srcCompat="@drawable/ic_cart"
+            app:tint="@color/purplePale" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="@string/favorites_empty"
+            android:layout_marginTop="12dp"
+            android:text="No orders yet"
             android:textColor="@color/textSecondary"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
-    <!-- Favorites product grid -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/favoritesRv"
+        android:id="@+id/ordersRv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="16dp"
         android:clipToPadding="false"
-        android:paddingHorizontal="12dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="24dp"
         android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTv"
-        tools:listitem="@layout/item_product"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

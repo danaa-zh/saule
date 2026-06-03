@@ -9,11 +9,10 @@ public class Category {
     @DocumentId
     private String id;
     private String name;
-    private String iconUrl;
+    private String imageUrl;
     private int productCount;
     private int sortOrder;
 
-    // Required for Firestore
     public Category() {}
 
     public Category(String id, String name, int sortOrder) {
@@ -21,7 +20,7 @@ public class Category {
         this.name = name;
         this.sortOrder = sortOrder;
         this.productCount = 0;
-        this.iconUrl = "";
+        this.imageUrl = "";
     }
 
     public String getId() { return id; }
@@ -30,8 +29,8 @@ public class Category {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getIconUrl() { return iconUrl; }
-    public void setIconUrl(String iconUrl) { this.iconUrl = iconUrl; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
     public int getProductCount() { return productCount; }
     public void setProductCount(int productCount) { this.productCount = productCount; }

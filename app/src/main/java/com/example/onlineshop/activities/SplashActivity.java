@@ -11,7 +11,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
+import androidx.core.splashscreen.SplashScreen;
 import com.example.onlineshop.R;
 import com.example.onlineshop.databinding.ActivitySplashBinding;
 import com.example.onlineshop.repository.AuthRepository;
@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
 
         authRepository = new AuthRepository();
@@ -38,7 +39,6 @@ public class SplashActivity extends AppCompatActivity {
         setupClickListeners();
         setupSignInSpannable();
     }
-
     private void setupClickListeners() {
         binding.startBtn.setOnClickListener(v -> navigateToSignUp());
     }

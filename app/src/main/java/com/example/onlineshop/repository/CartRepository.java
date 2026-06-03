@@ -44,11 +44,11 @@ public class CartRepository {
         String uid = getCurrentUid(callback);
         if (uid == null) return;
 
-        db.collection(COLLECTION_USERS)
-                .document(uid)
+        db.collection(COLLECTION_USERS).document(uid)
                 .collection(COLLECTION_CART)
-                .add(item)
-                .addOnSuccessListener(ref -> callback.onSuccess(null))
+                .document(item.getProductId())
+                .set(item)
+                .addOnSuccessListener(unused -> callback.onSuccess(null))
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
 

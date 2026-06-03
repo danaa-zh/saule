@@ -1,7 +1,9 @@
 package com.example.onlineshop.model;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentId;
 import com.google.firebase.firestore.Exclude;
+import com.google.firebase.firestore.PropertyName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +15,24 @@ public class Product {
     private String id;
     private String name;
     private String description;
-    private double price;
+    private long price;
     private String categoryId;
     private String categoryName;
     private List<String> imageUrls;
     private List<String> colors;
     private double rating;
-    private int reviewCount;
-    private int stockCount;
-    private boolean isFeatured;
-    private long createdAt;
+    private long reviewCount;
+    private long stockCount;
+    @PropertyName("featured")
+    private boolean featured;
+    private Timestamp createdAt;
 
-    // Required empty constructor for Firestore
     public Product() {
         imageUrls = new ArrayList<>();
         colors = new ArrayList<>();
     }
 
-    public Product(String name, String description, double price,
+    public Product(String name, String description, long price,
                    String categoryId, String categoryName) {
         this.name = name;
         this.description = description;
@@ -42,11 +44,10 @@ public class Product {
         this.rating = 0.0;
         this.reviewCount = 0;
         this.stockCount = 0;
-        this.isFeatured = false;
-        this.createdAt = System.currentTimeMillis();
+        this.featured = false;
+        this.createdAt = Timestamp.now();
     }
 
-    // Getters & Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -56,8 +57,8 @@ public class Product {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public long getPrice() { return price; }
+    public void setPrice(long price) { this.price = price; }
 
     public String getCategoryId() { return categoryId; }
     public void setCategoryId(String categoryId) { this.categoryId = categoryId; }
@@ -74,17 +75,20 @@ public class Product {
     public double getRating() { return rating; }
     public void setRating(double rating) { this.rating = rating; }
 
-    public int getReviewCount() { return reviewCount; }
-    public void setReviewCount(int reviewCount) { this.reviewCount = reviewCount; }
+    public long getReviewCount() { return reviewCount; }
+    public void setReviewCount(long reviewCount) { this.reviewCount = reviewCount; }
 
-    public int getStockCount() { return stockCount; }
-    public void setStockCount(int stockCount) { this.stockCount = stockCount; }
+    public long getStockCount() { return stockCount; }
+    public void setStockCount(long stockCount) { this.stockCount = stockCount; }
 
-    public boolean isFeatured() { return isFeatured; }
-    public void setFeatured(boolean featured) { isFeatured = featured; }
+    @PropertyName("featured")
+    public boolean isFeatured() { return featured; }
 
-    public long getCreatedAt() { return createdAt; }
-    public void setCreatedAt(long createdAt) { this.createdAt = createdAt; }
+    @PropertyName("featured")
+    public void setFeatured(boolean featured) { this.featured = featured; }
+
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 
     @Exclude
     public String getFirstImageUrl() {
@@ -94,7 +98,7 @@ public class Product {
 
     @Exclude
     public String getFormattedPrice() {
-        return String.format("%,.0f ₸", price);
+        return String.format("%,.0f ₸", (double) price);
     }
 
     @Exclude
@@ -111,4 +115,3 @@ public class Product {
     @Override
     public int hashCode() { return Objects.hash(id); }
 }
-

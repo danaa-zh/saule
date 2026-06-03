@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +16,9 @@ import com.example.onlineshop.R;
 import com.example.onlineshop.databinding.ItemProductBinding;
 import com.example.onlineshop.model.Product;
 
-/**
- * RecyclerView adapter for product grid/list.
- * Uses ListAdapter + DiffUtil for efficient updates.
- * Follows SRP: display logic only.
- */
+import java.util.HashSet;
+import java.util.Set;
+
 public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductViewHolder> {
 
     public interface OnProductClickListener {
@@ -28,10 +27,34 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductV
     }
 
     private final OnProductClickListener listener;
+    private final Set<String> favoriteIds = new HashSet<>();
 
     public ProductAdapter(OnProductClickListener listener) {
         super(DIFF_CALLBACK);
         this.listener = listener;
+    }
+
+    public void setFavoriteIds(Set<String> ids) {
+        favoriteIds.clear();
+        if (ids != null) favoriteIds.addAll(ids);
+        notifyDataSetChanged();
+    }
+
+    public void toggleFavoriteId(String productId) {
+        if (favoriteIds.contains(productId)) {
+            favoriteIds.remove(productId);
+        } else {
+            favoriteIds.add(productId);
+        }
+        int pos = getPositionById(productId);
+        if (pos >= 0) notifyItemChanged(pos);
+    }
+
+    private int getPositionById(String id) {
+        for (int i = 0; i < getCurrentList().size(); i++) {
+            if (id.equals(getCurrentList().get(i).getId())) return i;
+        }
+        return -1;
     }
 
     private static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK =
@@ -77,7 +100,6 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductV
             binding.ratingTv.setText(
                     String.format("%.1f (%d)", product.getRating(), product.getReviewCount()));
 
-            // Load image with Glide
             Glide.with(binding.productImage.getContext())
                     .load(product.getFirstImageUrl())
                     .apply(new RequestOptions()
@@ -86,8 +108,18 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductV
                             .transform(new RoundedCorners(24)))
                     .into(binding.productImage);
 
+            boolean isFav = favoriteIds.contains(product.getId());
+            binding.favoriteBtn.setImageResource(
+                    isFav ? R.drawable.ic_favorite : R.drawable.ic_favorite_border);
+            binding.favoriteBtn.setColorFilter(
+                    ContextCompat.getColor(binding.getRoot().getContext(),
+                            isFav ? R.color.purple : R.color.textSecondary));
+
             binding.getRoot().setOnClickListener(v -> listener.onProductClick(product));
-            binding.favoriteBtn.setOnClickListener(v -> listener.onFavoriteClick(product));
+            binding.favoriteBtn.setOnClickListener(v -> {
+                listener.onFavoriteClick(product);
+                toggleFavoriteId(product.getId());
+            });
         }
     }
 }

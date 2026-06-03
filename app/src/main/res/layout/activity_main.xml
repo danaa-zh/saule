@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Bottom Navigation matching design: Home, Catalog, Cart, Favorites, Profile -->
+    <!-- Bottom Navigation — 4 tabs: Home | Catalog | Favorites | Profile -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"

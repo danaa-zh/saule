@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "145230708169",
+    "firebase_url": "https://online-shop-5c430-default-rtdb.firebaseio.com",
     "project_id": "online-shop-5c430",
     "storage_bucket": "online-shop-5c430.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.onlineshop"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "145230708169-ojh7ed59p57p48le6jr5k7kgbb2e4051.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onlineshop",
+            "certificate_hash": "72fa0399eb66f9ac9f9c1bc4d49195441a1d3e81"
+          }
+        },
+        {
+          "client_id": "145230708169-f2jlo92kskhc2hlagu1looupa7qeoa67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBKWhqXH9astg55kZDHImRIsGKSJko-4dY"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145230708169-f2jlo92kskhc2hlagu1looupa7qeoa67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

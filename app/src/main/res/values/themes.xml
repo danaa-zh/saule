@@ -102,4 +102,10 @@
         <item name="strokeWidth">1dp</item>
     </style>
 
+    <style name="Theme.OnlineShop.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_pic</item>
+        <item name="postSplashScreenTheme">@style/Theme.Saule</item>
+    </style>
+
 </resources>

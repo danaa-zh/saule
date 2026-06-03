@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.onlineshop.activities.MyOrdersActivity;
+import com.example.onlineshop.activities.SettingsActivity;
 import com.example.onlineshop.activities.SplashActivity;
 import com.example.onlineshop.databinding.FragmentProfileBinding;
 import com.example.onlineshop.model.User;
@@ -38,6 +40,12 @@ public class ProfileFragment extends Fragment {
 
         loadUserProfile();
 
+        binding.myOrdersRow.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), MyOrdersActivity.class)));
+
+        binding.settingsRow.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), SettingsActivity.class)));
+
         binding.signOutBtn.setOnClickListener(v -> signOut());
     }
 
@@ -51,9 +59,7 @@ public class ProfileFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(String errorMessage) {
-                // silently fail — non-critical
-            }
+            public void onFailure(String errorMessage) {}
         });
     }
 

@@ -68,9 +68,9 @@ public class CategoryHomeAdapter extends ListAdapter<Category, CategoryHomeAdapt
         void bind(Category category) {
             binding.categoryName.setText(category.getName());
 
-            if (category.getIconUrl() != null && !category.getIconUrl().isEmpty()) {
+            if (category.getImageUrl() != null && !category.getImageUrl().isEmpty()) {
                 Glide.with(binding.categoryIcon.getContext())
-                        .load(category.getIconUrl())
+                        .load(category.getImageUrl())
                         .placeholder(R.drawable.ic_catalog)
                         .into(binding.categoryIcon);
             } else {

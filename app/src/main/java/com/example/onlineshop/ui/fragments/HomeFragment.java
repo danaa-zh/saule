@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.onlineshop.activities.CartActivity;
+import com.example.onlineshop.activities.MainActivity;
 import com.example.onlineshop.activities.ProductDetailActivity;
 import com.example.onlineshop.databinding.FragmentHomeBinding;
 import com.example.onlineshop.model.Category;
@@ -34,10 +36,10 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private AuthRepository authRepository;
-    private ProductRepository productRepository;
+    private AuthRepository      authRepository;
+    private ProductRepository   productRepository;
     private CategoryHomeAdapter categoryAdapter;
-    private ProductAdapter productAdapter;
+    private ProductAdapter      productAdapter;
 
     @Nullable
     @Override
@@ -56,6 +58,7 @@ public class HomeFragment extends Fragment {
         productRepository = new ProductRepository();
 
         setupRecyclerViews();
+        setupClickListeners();
         loadUserName();
         loadCategories();
         loadFeaturedProducts();
@@ -78,15 +81,23 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFavoriteClick(Product product) {
-                // TODO: Implement favorites toggle
-                Toast.makeText(requireContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+                // Delegated to FavoritesFragment via MainActivity is not needed;
+                // FavoritesRepository handles toggle from anywhere.
+                Toast.makeText(requireContext(),
+                        product.getName() + " saved to favorites", Toast.LENGTH_SHORT).show();
             }
         });
 
-        binding.productsRv.setLayoutManager(
-                new GridLayoutManager(requireContext(), 2));
+        binding.productsRv.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         binding.productsRv.setAdapter(productAdapter);
         binding.productsRv.setNestedScrollingEnabled(false);
+    }
+
+    private void setupClickListeners() {
+        // Cart icon → open CartActivity (standalone screen, not a nav tab)
+        binding.cartBtn.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), CartActivity.class));
+        });
     }
 
     private void loadUserName() {
@@ -100,7 +111,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(String errorMessage) {
-                // Non-critical: leave default "User" text
+                // Non-critical: leave default text
             }
         });
     }
@@ -116,7 +127,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(String errorMessage) {
-                // Non-critical: categories section just stays empty
+                // Non-critical: categories section stays empty
             }
         });
     }
@@ -147,8 +158,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void onCategoryClick(Category category) {
-        // TODO: Navigate to catalog filtered by category
-        Toast.makeText(requireContext(), category.getName(), Toast.LENGTH_SHORT).show();
+        // Navigate to Catalog tab filtered by this category
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity())
+                    .navigateToCatalog(category.getId(), category.getName());
+        }
     }
 
     private void navigateToProductDetail(Product product) {

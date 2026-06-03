@@ -1,8 +1,10 @@
 package com.example.onlineshop.repository;
 
 import com.example.onlineshop.model.User;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
@@ -14,12 +16,12 @@ public class AuthRepository {
 
     private static final String COLLECTION_USERS = "users";
 
-    private final FirebaseAuth auth;
+    private final FirebaseAuth      auth;
     private final FirebaseFirestore db;
 
     public AuthRepository() {
         this.auth = FirebaseAuth.getInstance();
-        this.db = FirebaseFirestore.getInstance();
+        this.db   = FirebaseFirestore.getInstance();
     }
 
     // ─── Auth State ────────────────────────────────────────────────────────────
@@ -54,7 +56,7 @@ public class AuthRepository {
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
 
-    // ─── Sign In ───────────────────────────────────────────────────────────────
+    // ─── Sign In (Email/Password) ───────────────────────────────────────────────
 
     public void signIn(String email, String password,
                        FirebaseCallback<User> callback) {
@@ -66,6 +68,51 @@ public class AuthRepository {
                         return;
                     }
                     fetchUserFromFirestore(firebaseUser.getUid(), callback);
+                })
+                .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
+    }
+
+    // ─── Sign In (Google) ──────────────────────────────────────────────────────
+
+    /**
+     * Completes Google Sign-In by exchanging the Google ID token for a Firebase credential.
+     * Call this from SignInActivity after a successful GoogleSignIn intent result.
+     *
+     * @param idToken  The ID token from GoogleSignInAccount.getIdToken()
+     * @param callback Returns the User profile on success
+     */
+    public void firebaseAuthWithGoogle(String idToken, FirebaseCallback<User> callback) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+
+        auth.signInWithCredential(credential)
+                .addOnSuccessListener(authResult -> {
+                    FirebaseUser firebaseUser = authResult.getUser();
+                    if (firebaseUser == null) {
+                        callback.onFailure("Google sign-in failed. Please try again.");
+                        return;
+                    }
+
+                    // Check if this is a new user — if so, create their Firestore profile
+                    boolean isNewUser = authResult.getAdditionalUserInfo() != null
+                            && authResult.getAdditionalUserInfo().isNewUser();
+
+                    if (isNewUser) {
+                        String name  = firebaseUser.getDisplayName() != null
+                                ? firebaseUser.getDisplayName() : "User";
+                        String email = firebaseUser.getEmail() != null
+                                ? firebaseUser.getEmail() : "";
+                        User user = new User(firebaseUser.getUid(), name, email);
+
+                        // Store photo URL from Google account
+                        if (firebaseUser.getPhotoUrl() != null) {
+                            user.setPhotoUrl(firebaseUser.getPhotoUrl().toString());
+                        }
+
+                        saveUserToFirestore(user, callback);
+                    } else {
+                        // Returning user — fetch existing profile
+                        fetchUserFromFirestore(firebaseUser.getUid(), callback);
+                    }
                 })
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
     }
@@ -103,16 +150,19 @@ public class AuthRepository {
                 .get()
                 .addOnSuccessListener(snapshot -> {
                     if (snapshot.exists()) {
-                        User user = snapshot.toObject(User.class);
-                        callback.onSuccess(user);
+                        callback.onSuccess(snapshot.toObject(User.class));
                     } else {
-                        // User signed in but profile missing — create basic profile
+                        // Signed in but no Firestore profile — create a basic one
                         FirebaseUser fbUser = auth.getCurrentUser();
                         if (fbUser != null) {
                             String name = fbUser.getDisplayName() != null
                                     ? fbUser.getDisplayName() : "User";
-                            User user = new User(uid, name,
-                                    fbUser.getEmail() != null ? fbUser.getEmail() : "");
+                            String email = fbUser.getEmail() != null
+                                    ? fbUser.getEmail() : "";
+                            User user = new User(uid, name, email);
+                            if (fbUser.getPhotoUrl() != null) {
+                                user.setPhotoUrl(fbUser.getPhotoUrl().toString());
+                            }
                             saveUserToFirestore(user, callback);
                         } else {
                             callback.onFailure("User profile not found.");
